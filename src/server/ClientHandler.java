@@ -31,7 +31,7 @@ public class ClientHandler {
                             String[] token = str.split(" ");
 
                             System.out.println(str);
-                            if (token.length < 2) {
+                            if (token.length < 3) {
                                 continue;
                             }
 
@@ -55,9 +55,13 @@ public class ClientHandler {
                     while (true) {
                         String str = in.readUTF();
 
+
                         if (str.equals("/end")) {
                             sendMsg("/end");
                             break;
+                        }
+                        else if(str.startsWith("/n")){
+
                         }
 
                         server.broadcastMsg(nick + ": " + str);
