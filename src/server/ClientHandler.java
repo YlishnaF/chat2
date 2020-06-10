@@ -24,7 +24,7 @@ public class ClientHandler {
             new Thread(() -> {
                 try {
                     //Если в течении 5 секунд не будет сообщений по сокету то вызовится исключение
-                    socket.setSoTimeout(0);
+                    socket.setSoTimeout(120000);
 
                     //цикл аутентификации
                     while (true) {
@@ -42,6 +42,7 @@ public class ClientHandler {
                                     .registration(token[1], token[2], token[3]);
                             if (succeed) {
                                 sendMsg("Регистрация прошла успешно");
+                                socket.setSoTimeout(0);
                             } else {
                                 sendMsg("Регистрация  не удалась. \n" +
                                         "Возможно логин уже занят, или данные содержат пробел");
