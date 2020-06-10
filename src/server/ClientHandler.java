@@ -58,15 +58,28 @@ public class ClientHandler {
                     //цикл работы
                     while (true) {
                         String str = in.readUTF();
+                        if(str.startsWith("/")){
+                            if (str.equals("/end")) {
+                                sendMsg("/end");
+                                break;
+                            }
+                            if(str.startsWith("/w")){
+                                String [] token = str.split(" ", 3);
 
+                                if(token.length<3){
+                                    continue;
+                                }
+                                server.privatMsg(this, token[1], token[2]);
 
-                        if (str.equals("/end")) {
-                            sendMsg("/end");
-                            break;
+                            }
+
+                        } else{
+                            server.broadcastMsg(nick, str);
                         }
 
 
-                        server.broadcastMsg(nick + ": " + str);
+
+
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

@@ -41,13 +41,24 @@ public class Server {
         }
     }
 
-    public void broadcastMsg(String msg){
+    public void broadcastMsg(String nick, String msg){
         for (ClientHandler c:clients) {
-            c.sendMsg(msg);
+            c.sendMsg(nick + ": " + msg);
         }
     }
 
-
+    public void privatMsg(ClientHandler sender, String reciver, String msg){
+        String message = String.format("[s%] private [s%] : %s", sender, reciver,msg);
+        for(ClientHandler c: clients){
+            if(c.getNick().equals(reciver)){
+                c.sendMsg(message);
+                if(!c.getNick().equals(reciver)){
+                    sender.sendMsg(message);
+                }
+                return;
+            }
+        }
+    }
 
 
 
