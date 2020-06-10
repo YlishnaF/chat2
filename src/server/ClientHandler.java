@@ -12,6 +12,10 @@ public class ClientHandler {
     private DataOutputStream out;
 
     private String nick;
+    public String getNick(){
+        return nick;
+    }
+
     private String login;
 
     public ClientHandler(Server server, Socket socket) {
@@ -60,9 +64,7 @@ public class ClientHandler {
                             sendMsg("/end");
                             break;
                         }
-                        else if(str.startsWith("/n")){
 
-                        }
 
                         server.broadcastMsg(nick + ": " + str);
                     }

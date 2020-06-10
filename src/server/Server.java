@@ -47,13 +47,7 @@ public class Server {
         }
     }
 
-    public void broadcastMsg(String msg, String nick) {
-        for (ClientHandler c : clients) {
-                if (c.equals(nick)) {
-                c.sendMsg(msg);
-            }
-        }
-    }
+
 
 
 
